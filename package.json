@@ -1,0 +1,12 @@
+{
+  "name": "smart-crop-standalone",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "setup": "npm --workspace server run setup",
+    "dev": "npm run setup && concurrently -k -n SERVER,CLIENT -c blue,green \"npm --workspace server run dev\" \"npm --workspace client run dev -- --host\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

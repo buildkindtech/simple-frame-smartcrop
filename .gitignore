@@ -1,0 +1,8 @@
+**/node_modules
+**/.vite
+**/dist
+**/.DS_Store
+server/public/crops/*
+server/uploads/*
+!server/public/.gitkeep
+!server/uploads/.gitkeep
