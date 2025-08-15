@@ -1,40 +1,69 @@
+좋아요, 여기 README.md 내용 만들어드릴게요.
+아래 내용 복사해서 `smart-crop-standalone` 폴더 안에 `README.md`로 저장하면 됩니다.
+
+---
+
+```markdown
 # Smart Crop – Standalone (Client + Server)
 
 Minimal, self-contained version of the Smart Moulding Cropper for external testing and batch production.
 
-## What’s inside
-- **Client**: Vite + React + TypeScript. Canvas UI with multi-box drag/resize and per-box 0.5° rotation, zoom/pan, vendor prefixing.
-- **Server**: Express + TypeScript using **tesseract.js** (OCR) and **sharp** (crop/rotate). Files are saved to `server/public/crops` for quick preview.
-  - Endpoints:
-    - `POST /api/detect-item-numbers` → `{ itemNumbers: string[] }`
-    - `POST /api/multiple-crop-mouldings` → `{ croppedMouldings: { id, imageUrl, detectedNumber }[] }`
+---
 
-## Prereqs
-- Node 18+
-- `sharp` needs libvips (auto-installed on most platforms). If install fails on macOS, run `xcode-select --install` first.
-- `tesseract.js` ships its own worker; no native build required.
+## 실행 위치
+```
 
-## Quick start
+cd \~/Desktop/Smart/smart-crop-standalone
+
+````
+
+---
+
+## 실행 방법 (Mac / zsh 기준)
+
+### 1) 서버 실행
 ```bash
-# Terminal 1
 cd server
-npm i
+npm install
 npm run dev
+````
 
-# Terminal 2
-cd client
-npm i
+서버 기본 포트: `http://localhost:4000`
+
+---
+
+### 2) 클라이언트 실행
+
+**새 터미널 창**을 열고:
+
+```bash
+cd ~/Desktop/Smart/smart-crop-standalone/client
+npm install
 npm run dev
 ```
-- Open http://localhost:5173
-- Server runs on http://localhost:3001 (proxy configured in Vite).
 
-## Notes
-- This build saves crops to local disk for speed. To push to Firebase Storage, replace the file write section in `server/src/index.ts` with Firebase Admin SDK upload.
-- OCR regex is intentionally permissive for moulding-like IDs (e.g., 4201, 1394). Adjust `/[A-Z]?[0-9]{3,6}[A-Z]?/gi` to your catalog format.
-- Rotation is applied per-crop on the server; client sends `rotation` degrees. Crop is extracted first, then rotated around its center.
-- Keep crop boxes within the image bounds (the client enforces this).
+클라이언트 기본 포트: `http://localhost:5173`
 
-## Vendor prefixes
-- Mapped in both client and server. Update as needed:
-  - 1: PR, 2: ST, 3: DM, 4: BM, 5: MM
+---
+
+## 실행 순서 요약
+
+1. 터미널 1: 서버 실행 (`server` 폴더에서 `npm run dev`)
+2. 터미널 2: 클라이언트 실행 (`client` 폴더에서 `npm run dev`)
+3. 브라우저에서 `http://localhost:5173` 접속
+
+---
+
+## 참고
+
+* Node.js 18+ 필요
+* 서버 실행 후 `http://localhost:4000/health` 에 접속하면 상태 확인 가능
+* 클라이언트 `.env`에서 `VITE_API_URL`을 서버 주소(`http://localhost:4000`)로 설정해야 함
+
+```
+
+---
+
+바로 복사해서 저장하면, 다음에 회사든 집이든 똑같이 실행할 수 있을 거예요.  
+원하면 제가 `.env` 예시까지 포함시켜서 만들어줄 수도 있어요.
+```
