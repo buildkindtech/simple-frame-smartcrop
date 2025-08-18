@@ -6,3 +6,6 @@ server/public/crops/*
 server/uploads/*
 !server/public/.gitkeep
 !server/uploads/.gitkeep
+
+# env files
+*.env
